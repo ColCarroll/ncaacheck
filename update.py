@@ -54,11 +54,16 @@ def print_results():
 
 
 def write_scores():
+    team_places = {}
+
     with open(os.path.join(DIR, 'readme.md'), 'wb') as buff:
-        buff.write('index|filename|score\n')
-        buff.write('-----|-----|-----\n')
-        buff.write("\n".join(
-            ["{:s}".format("|".join(map(str, [j, row[0], row[1]]))) for j, row in enumerate(score_all(), start=1)]))
+        buff.write('bracket_place|team_place|filename|score\n')
+        buff.write('-----|-----|-----|-----\n')
+        for j, row in enumerate(score_all(), start=1):
+            team_name = row[0].split("_")[0].replace("-"," ")
+            if team_name not in team_places:
+                team_places[team_name] = len(team_places) + 1
+            buff.write("{:s}\n".format("|".join(map(str, [j, team_places[team_name], row[0], row[1]]))))
 
 
 if __name__ == '__main__':
