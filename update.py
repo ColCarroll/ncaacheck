@@ -76,11 +76,11 @@ def score_possible(ordered_team_list=map(str, [1112, 1458, 1246, 1323, 1181, 121
             if team_name not in team_places:
                 team_places[team_name] = len(team_places) + 1
             if username in team_name:
-                outcomes.append([team_places[team_name]] + wins)
+                outcomes.append([team_places[team_name], row[1], j] + wins)
                 break
     with open('{:s}_outcomes.txt'.format(username), 'w') as buff:
         for k in sorted(outcomes, key=lambda j: j[0]):
-            buff.write("{:d}.\n\t{:s}".format(k[0], "\n\t".join(k[1:])))
+            buff.write("Team place: {:d}, submission place: {:d} ({:.4f})\n\t{:s}".format(k[0], k[2], k[1], "\n\t".join(k[3:])))
             buff.write("\n")
 
 
@@ -128,4 +128,4 @@ def write_scores():
 if __name__ == '__main__':
     # print_results()
     # write_scores()
-    score_possible()
+    score_possible(ordered_team_list=map(str, [1181, 1277, 1246, 1458]), username="bluefool")
