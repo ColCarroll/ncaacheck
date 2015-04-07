@@ -126,6 +126,6 @@ def write_scores():
 
 
 if __name__ == '__main__':
-    # print_results()
-    # write_scores()
-    score_possible(ordered_team_list=map(str, [1181, 1277, 1246, 1458]), username="bluefool")
+    print_results()
+    write_scores()
+    # score_possible(ordered_team_list=map(str, [1181, 1277, 1246, 1458]), username="carroll")
